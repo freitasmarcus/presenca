@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Painel</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Painel de Presenças</h2>
+
+<input type="date" id="data">
+
+<select id="turma">
+  <option>Ministério Diaconal</option>
+  <option>Ministério do Presbítero</option>
+  <option>Ministério do Evangelista e da Missionária</option>
+  <option>Ministério Pastoral II</option>
+</select>
+
+<button onclick="buscar()">Buscar</button>
+<button onclick="exportar()">Exportar</button>
+
+<table id="tabela"></table>
+
+</div>
+
+<script src="js/admin.js"></script>
+</body>
+</html>

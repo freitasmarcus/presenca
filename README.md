@@ -1,2 +1,13 @@
-# presenca
-Sistema de Registro de Presença dos alunos do Curso de Obreiros 2026, da FASSEB Polo de Porangatu
+# Sistema de Presença - FASSEB Porangatu
+
+✔ Registro com CPF  
+✔ Geolocalização  
+✔ Controle de horário  
+✔ Painel administrativo  
+✔ Exportação de relatórios  
+
+Desenvolvido com:
+- GitHub Pages (frontend)
+- Google Apps Script (backend)
+Por:
+- Marcus Vinicius de Sousa Freitas
