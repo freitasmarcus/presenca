@@ -2,43 +2,43 @@ const URL = "https://script.google.com/macros/s/AKfycbyu4aeKdYFT0SnsM-4eSc82qL7v
 
 let listaNomes = [];
 
-// 🔹 carregar lista uma vez
+// 🔹 carregar lista
 fetch(URL)
-.then(res => res.json())
-.then(lista => {
-  listaNomes = lista;
-});
-
-// 🔹 autocomplete com filtro
-const inputNome = document.getElementById("nome");
-const datalist = document.getElementById("nomes");
-
-inputNome.addEventListener("input", () => {
-  const valor = inputNome.value.trim().toLowerCase();
-
-  // limpa lista
-  datalist.innerHTML = "";
-
-  // 🔴 só executa com 4+ caracteres
-  if (valor.length < 4) return;
-
-  // filtra nomes
-  const filtrados = listaNomes.filter(item =>
-    item.nome.toLowerCase().includes(valor)
-  );
-
-  // limita quantidade (opcional, melhora UX)
-  filtrados.slice(0, 10).forEach(item => {
-    const option = document.createElement("option");
-    option.value = item.nome;
-    datalist.appendChild(option);
+  .then(res => res.json())
+  .then(lista => {
+    listaNomes = lista;
+  })
+  .catch(err => {
+    console.error("Erro no autocomplete:", err);
   });
-});
-.catch(err => {
-  console.error("Erro no autocomplete:", err);
+
+// 🔹 aguarda DOM
+document.addEventListener("DOMContentLoaded", () => {
+
+  const inputNome = document.getElementById("nome");
+  const datalist = document.getElementById("nomes");
+
+  inputNome.addEventListener("input", () => {
+    const valor = inputNome.value.trim().toLowerCase();
+
+    datalist.innerHTML = "";
+
+    if (valor.length < 4) return;
+
+    const filtrados = listaNomes.filter(item =>
+      item.nome.toLowerCase().includes(valor)
+    );
+
+    filtrados.slice(0, 10).forEach(item => {
+      const option = document.createElement("option");
+      option.value = item.nome;
+      datalist.appendChild(option);
+    });
+  });
+
 });
 
-// 🔹 registrar presença
+// 🔹 registrar presença (seu código mantido)
 function registrar() {
 
   const nome = document.getElementById("nome").value.trim();
@@ -48,10 +48,12 @@ function registrar() {
     alert("Preencha todos os campos");
     return;
   }
-if (cpf.length !== 11) {
-  alert("CPF deve conter 11 números");
-  return;
-}
+
+  if (cpf.length !== 11) {
+    alert("CPF deve conter 11 números");
+    return;
+  }
+
   navigator.geolocation.getCurrentPosition(pos => {
 
     fetch(URL, {
